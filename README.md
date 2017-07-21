@@ -2,7 +2,7 @@
 ===
 
 
-## 什么是 Anko？
+## 13.1 什么是 Anko？
 
 Anko (https://github.com/Kotlin/anko)  是一个用 Kotlin 写的Android DSL (Domain-Specific Language)。长久以来，Android视图都是用 XML 来完成布局的。这些 XML可重用性比较差。同时在运行的时候，XML 要转换成 Java 表述，这在一定程度上占用了 CPU 和耗费了电量。
 
@@ -19,7 +19,7 @@ Anko由几个部分组成:
 
 有了Anko 我们就能直接用 Kotlin 在任何的 Activity 、 Fragment 或者 AnkoComponent里来编写视图。
 
-## 一个简单Anko视图
+## 13.2 一个简单Anko视图
 
 这里是一个转换成 Anko 的简单 XML 文件。
 
@@ -62,7 +62,7 @@ verticalLayout {
 
 可以看到在button布局中的onClick监听函数中，因为我们是使用 Kotlin代码来设计视图，所以可以直接使用title变量（editText视图对象）。
 
-## 快速入门实例
+## 13.3 快速入门实例
 
 下面我们通过一个“我的日程”待办事项应用，来详细介绍使用 Kotlin 混合 Java，使用 Anko 开发的Android 应用的方法。移动端数据库引擎我们使用 Realm，视图绑定使用Butter Knife。
 
@@ -78,7 +78,7 @@ verticalLayout {
 
 
 
-## 使用 Android Studio 新建工程
+## 13.4 使用 Android Studio 新建工程
 
 我们首先在 Android Studio 中新建工程，步骤如下：
 
@@ -174,7 +174,7 @@ verticalLayout {
 ![Screenshot_1500567437.png](http://upload-images.jianshu.io/upload_images/1233356-fd623bdd8a8402dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-## 设计UI 界面主题颜色
+## 13.5 设计UI 界面主题颜色
 
 
 我们首先把应用名称改成“我的日程”。在文件MyTodoApplication/app/src/main/res/values/strings.xml中：
@@ -223,7 +223,7 @@ app:srcCompat="drawable/ic_content_add"
 其中，ic_content_add.png图片是我们添加按钮中间的加号 icon。
 
 
-## 配置 Kotlin 与 Anko 依赖
+## 13.6 配置 Kotlin 与 Anko 依赖
 
 我们默认生成的 app 项目的 Gradle 配置文件build.gradle如下：
 ```
@@ -263,7 +263,7 @@ dependencies {
 
 下面我们在 app 项目的build.gradle里面加上Kotlin 、Anko 、Realm、Butter Knife 等依赖。
 
-### Kotlin依赖
+### 13.6.1 Kotlin依赖
 
 首先，启用插件`kotlin-android` :
 ```
@@ -294,7 +294,7 @@ compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 ```
 
 
-### 添加 Kotlin 源代码目录
+### 13.6.2 添加 Kotlin 源代码目录
 
 首先，我们在 src/main/下面新建一个 kotlin 目录，来存放 Kotlin源码。然后在 build.gradle 文件里的 `android {}` 配置里面添加Java的编译路径：
 
@@ -323,7 +323,7 @@ Gradle 同步完毕，即可看到kotlin 目录已经变成蓝色的源码目录
 
 
 
-### Anko依赖
+### 13.6.3 Anko依赖
 
 在项目依赖里添加
 ```
@@ -334,7 +334,7 @@ Gradle 同步完毕，即可看到kotlin 目录已经变成蓝色的源码目录
 
 ```
 
-### Realm依赖
+### 13.6.4 Realm依赖
 
 ```
     compile 'io.realm:realm-android:0.87.1'
@@ -366,7 +366,7 @@ repositories {
 
 
 
-### Butter Knife依赖
+### 13.6.5 Butter Knife依赖
 
 Butter Knife是基于注解处理方式工作：通过对代码注解自动生成模板代码。我们添加其依赖如下：
 
@@ -488,7 +488,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-## 将MainActivity.java 转成 Kotlin 代码
+## 13.7 将MainActivity.java 转成 Kotlin 代码
 
 选中默认生成的MainActivity.java， 我们使用 IDEA 的 Code > Convert Java File to Kotlin File :
 
@@ -556,7 +556,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-## 在 Kotlin 中使用 Realm
+## 13.8 在 Kotlin 中使用 Realm
 
 我们需要添加针对 Kotlin 的realm注解处理的库：
 
@@ -566,7 +566,7 @@ class MainActivity : AppCompatActivity() {
 ```
 
 
-## 添加日程实体类
+## 13.9 添加日程实体类
 
 我们先从领域模型的建立开始。首先我们需要设计一个极简的待办事项的实体类 Todo, 它有主键 id、标题、内容三个字段。
 
@@ -621,7 +621,7 @@ at com.easy.kotlin.mytodoapplication.TodoListFragment.onActivityCreated(TodoList
 
 
 
-### 添加日程事件
+## 13.10 添加日程事件
 
 现在我们点击添加日程的浮层按钮中，添加切换到 “日程添加编辑” `TodoEditFragment`的逻辑。
 
@@ -640,7 +640,7 @@ fab?.setOnClickListener { _ ->
 }
 ```
 
-### 添加日程界面
+## 13.11 添加日程界面
 
 下面我们来完成这个添加日程的界面。
 
@@ -843,7 +843,7 @@ button {
 这个 ids.xml 文件定义了所有能够被代码引用到的各种视图的 ids。
 
 
-## 保存待办事项到 Realm 中
+## 13.12 保存到 Realm 中
 
 新增待办事项，存入Realm数据库：
 
@@ -866,7 +866,7 @@ button {
 
 
 
-## 用RecyclerView 来展示待办事项
+## 13.13 用RecyclerView 来展示待办事项
 
 下面我们来实现这个页面。
 
@@ -1095,7 +1095,7 @@ override fun onResume() {
 然后，通过适配器`val adapter = TodoAdapter(activity, todos, true, true, this)`把数据装配到RecyclerView中 `realmRecyclerView.setAdapter(adapter)` 。
 
 
-## 运行测试
+## 13.14 运行测试
 
 编译安装应用，我们就可以看到如下的界面了，我们可以在里面添加编辑我们的待办事项。
 
