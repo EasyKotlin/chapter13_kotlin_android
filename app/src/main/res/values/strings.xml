@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">我的日程</string>
+    <string name="action_settings">设置</string>
+    <string name="empty_todos_message">暂无待办事项，请添加</string>
+    <string name="title_hint">标题</string>
+    <string name="content_hint">待办内容</string>
+    <string name="add_todo">添加</string>
+    <string name="save">保存</string>
+</resources>
